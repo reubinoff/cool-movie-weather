@@ -33,7 +33,7 @@ jobs:
         ls -l omdbweather/client_files
     - name: Build Docker
       run: |
-        TAG=1.0.0
+        TAG=latest
         REPO=omdbweather
         IMAGE=omdbweather
 
