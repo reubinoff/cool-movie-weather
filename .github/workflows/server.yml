@@ -34,11 +34,17 @@ jobs:
     - name: Build Docker
       run: |
         TAG=1.0.0
-        REPO=reubinoff
+        REPO=omdbweather
         IMAGE=omdbweather
 
-        PATH_TO_DOCKERFILE="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-
-        echo "building: $PATH_TO_DOCKERFILE"
-        docker build  -t $REPO/$IMAGE:$TAG -f $PATH_TO_DOCKERFILE/Dockerfile .
+        docker build  -t $REPO/$IMAGE:$TAG -f Dockerfile .
         docker image ls
+
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: omdbweather
+        password: omdbweather
+        repository: omdbweather/omdbweather:1.0.1
+        tag_with_ref: true
+  
