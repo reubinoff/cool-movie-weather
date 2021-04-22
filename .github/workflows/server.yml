@@ -17,8 +17,8 @@ jobs:
         server_pwd=$PWD
         cd omdbweather/frontend/cool-ui
         npm install
-        mkdir $server_pwd/conductor/client_files
-        npm run build -- --output-path $server_pwd/conductor/client_files
+        mkdir $server_pwd/omdbweather/client_files
+        npm run build -- --output-path $server_pwd/omdbweather/client_files
         cd -
     - name: Build server
       run: |
@@ -29,4 +29,4 @@ jobs:
         source venv/bin/activate
 
         pip install -r requirements.txt
-        ls -l $server_pwd/conductor/client_files
+        ls -l $server_pwd/omdbweather/client_files
