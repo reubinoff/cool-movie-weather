@@ -4,10 +4,29 @@ on:
     branches: [ develop ]
 
 jobs:
-  build-dll:
+  cool-weather:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
-          python-version: '3.x'
+          python-version: '3.8'
+    - name: Build client
+      run: |
+        echo "*** Building client"
+        server_pwd=$PWD
+        cd omdbweather/frontend/cool-ui
+        npm install
+        mkdir $server_pwd/conductor/client_files
+        npm run build -- --output-path $server_pwd/conductor/client_files
+        cd -
+    - name: Build server
+      run: |
+        echo "*** Building Server"
+        python setup.py clean --all
+
+        virtualenv venv
+        source venv/bin/activate
+
+        pip install -r requirements.txt
+        ls -l $server_pwd/conductor/client_files
