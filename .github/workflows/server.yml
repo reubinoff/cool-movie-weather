@@ -40,11 +40,11 @@ jobs:
         docker build  -t $REPO/$IMAGE:$TAG -f Dockerfile .
         docker image ls
 
-    - name: Build Docker
+    - name: Push Docker
       run: |
         # Login to Docker
-        echo Login to docker hub with username: $DOCKER_USERNAME
-        docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD > /dev/null 2>&1
+        echo Login to docker hub with username: omdbweather
+        docker login --username omdbweather --password omdbweather > /dev/null 2>&1
         if [ $? -ne 0 ]; then
             echoerr failed to Login to docker hub repo
             docker logout
