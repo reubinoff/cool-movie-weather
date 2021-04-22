@@ -40,11 +40,14 @@ jobs:
         docker build  -t $REPO/$IMAGE:$TAG -f Dockerfile .
         docker image ls
 
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v1
-      with:
-        username: omdbweather
-        password: omdbweather
-        repository: omdbweather/omdbweather:1.0.1
-        tag_with_ref: true
-  
+    - name: Build Docker
+      run: |
+        # Login to Docker
+        echo Login to docker hub with username: $DOCKER_USERNAME
+        docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            echoerr failed to Login to docker hub repo
+            docker logout
+            exit 1
+        fi
+        docker push omdbweather/omdbweather
