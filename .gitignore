@@ -138,8 +138,8 @@ venv/
 deploy_venv/
 linux_venv/
 outputs/
-.conductor
-/.idea/Conductor.iml
+.omdbweather
+/.idea/omdbweather.iml
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/vcs.xml
