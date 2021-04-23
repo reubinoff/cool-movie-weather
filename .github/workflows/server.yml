@@ -51,3 +51,6 @@ jobs:
             exit 1
         fi
         docker push omdbweather/omdbweather
+    - name: Deploy
+      run: |
+          curl -X POST https://$cool-ui:KXRpAMq0cMZKuYboexbfzqlnDi6bqsQbjlW1rqvtHBbYDF1gFqrszxv4RDom@cool-ui.scm.azurewebsites.net/docker/hook
