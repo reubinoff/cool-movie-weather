@@ -1,0 +1,8 @@
+hydra-core
+hydra_colorlog
+
+tornado
+tornado-swagger
+
+redisearch
+# dont delete this line

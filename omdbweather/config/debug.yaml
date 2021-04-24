@@ -1,0 +1,10 @@
+debug: True
+
+weathermap:
+  url:
+  key:
+
+
+omdb:
+  url:
+  key:
