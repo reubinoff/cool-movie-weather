@@ -11,6 +11,9 @@ from omegaconf import DictConfig, OmegaConf
 from tornado_swagger.setup import setup_swagger
 
 from omdbweather.handlers.helper import HelperHandler
+from omdbweather.handlers.movies import MoviesHandler
+from omdbweather.cache_engine import MovieCacheEngine
+
 
 LOGGER = logging.getLogger(__name__)
 
@@ -24,10 +27,10 @@ class ServerHeaderTransform(tornado.web.OutputTransform):
 class WebApp(tornado.web.Application):
     def __init__(self, cfg: DictConfig):
         data = OmegaConf.to_container(cfg)
+        caches = self._setup_cache(cfg, "movies")
         _routes = [
             tornado.web.url (r"/api/help", HelperHandler),
-            # tornado.web.url(r"/api/repositories", RepositorysHandler, dict(
-            #     repos=data["repositories"], working_dir=data["working_directory"], validator_settings=data["validator_settings"])),
+            tornado.web.url(r"/api/movies", MoviesHandler, dict(caches=caches)),
             # tornado.web.url (r"/api/repository/(.*)", RepositoryHandler, dict(repos=data["repositories"])),
             # tornado.web.url (r"/api/credentials", CredentialsHandler),
             # tornado.web.url (r"/api/containers", ContainersHandler),
@@ -54,7 +57,15 @@ class WebApp(tornado.web.Application):
             }
         super().__init__(_routes, transforms=[ServerHeaderTransform], **global_settings)
 
-
+    def _setup_cache(self, cfg: DictConfig, idx_name) -> MovieCacheEngine:
+        host = "myredis"
+        if cfg.debug is True:
+            host = "localhost"
+        cache_engine = MovieCacheEngine(host)
+        return {
+            "movie": cache_engine
+        }
+            
 
 
 def make_app(cfg: DictConfig = None):
