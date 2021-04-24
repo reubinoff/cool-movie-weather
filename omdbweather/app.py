@@ -42,7 +42,7 @@ class WebApp(tornado.web.Application):
             swagger_url="/doc",
             api_base_url="/",
             description="Cmdbweather",
-            api_version="1.0.0",
+            api_version="1.0.1",
             title="omdbweather Service",
             contact="reubinoff@gmail.com",
             schemes=["http"]
