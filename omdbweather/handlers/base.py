@@ -105,7 +105,7 @@ class BaseHandler(web.RequestHandler):
 
 
 @register_swagger_model
-class UserLogin:
+class Movie:
     """
     ---
     type: object
@@ -115,129 +115,53 @@ class UserLogin:
             type: string
         password:
             type: string
-    """
-
-@register_swagger_model
-class ClusterDeletion:
-    """
-    ---
-    type: object
-    description: Cluster operation
-    properties:
-        arn:
+        "Rated":
             type: string
-    """
-
-@register_swagger_model
-class WinOperation:
-    """
-    ---
-    type: object
-    description: Environment operation
-    properties:
-        action:
+        "imdbID":
             type: string
-            description: the action to do
-            enum: [start, stop]
-
-        
-    """
-
-@register_swagger_model
-class EnvOperation:
-    """
-    ---
-    type: object
-    description: Environment operation
-    properties:
-        action:
+        "imdbVotes":
             type: string
-            description: the action to do
-            enum: [start, stop, restore]
-
-        
-    """
-
-@register_swagger_model
-class ClusterOperation:
-    """
-    ---
-    type: object
-    description: Cluster operation
-    properties:
-        name:
+        "DVD":
             type: string
-        action:
+        "Title":
             type: string
-            description: the action to do
-            enum: [start, stop, describe]
-        environment:
+        "BoxOffice":
             type: string
-            description: nvironemt name
-            enum: [test, stage, prod]
-
-        
-    """
-
-
-@register_swagger_model
-class WinServer:
-    """
-    ---
-    type: object
-    description: Windows Server
-    properties:
-        name:
+        "Writer":
             type: string
-        instance_id:
+        "Poster":
             type: string
-        instance_type:
+        "Year":
             type: string
-        public_ip_address:
+        "Type":
             type: string
-        environment:
+        "Genre":
             type: string
-            description: nvironemt name
-            enum: [test, stage, prod]
-        status:
-            type: boolean
-        status_name:
+        "Production":
             type: string
-    """
-
-@register_swagger_model
-class NewCluster:
-    """
-    ---
-    type: object
-    description: New Cluster
-    properties:
-        name:
+        "Actors":
             type: string
-        
-    """
-@register_swagger_model
-class ClusterModel:
-    """
-    ---
-    type: object
-    description: Cluster model representation
-    properties:
-        name:
+        "Language":
             type: string
-        environment:
+        "Metascore":
             type: string
-            description: nvironemt name
-            enum: [test, stage, prod]
-        arn:
+        "Awards":
             type: string
-        state:
+        "Plot":
             type: string
-            description: Cluster ECS state
-        status:
-            type: boolean
-            description: Clinic status
-        url:
+        "Released":
             type: string
-
+        "imdbRating":
+            type: string
+        "Ratings":
+            type: string
+        "Director":
+            type: string
+        "Runtime":
+            type: string
+        "Website":
+            type: string    
+        "Country":
+            type: string
+    
     """

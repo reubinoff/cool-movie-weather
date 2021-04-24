@@ -11,7 +11,7 @@ from omegaconf import DictConfig, OmegaConf
 from tornado_swagger.setup import setup_swagger
 
 from omdbweather.handlers.helper import HelperHandler
-from omdbweather.handlers.movies import MoviesHandler
+from omdbweather.handlers.movies import MoviesHandler, MovieHandler
 from omdbweather.cache_engine import MovieCacheEngine
 
 
@@ -31,6 +31,7 @@ class WebApp(tornado.web.Application):
         _routes = [
             tornado.web.url (r"/api/help", HelperHandler),
             tornado.web.url(r"/api/movies", MoviesHandler, dict(caches=caches)),
+            tornado.web.url(r"/api/movies/(.*)", MovieHandler, dict(caches=caches)),
             # tornado.web.url (r"/api/repository/(.*)", RepositoryHandler, dict(repos=data["repositories"])),
             # tornado.web.url (r"/api/credentials", CredentialsHandler),
             # tornado.web.url (r"/api/containers", ContainersHandler),
